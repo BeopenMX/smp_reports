@@ -244,10 +244,10 @@
                 <div class="col-12">
                     <div style="background-color:#1b4493;color:white;">
                         <div class="row">
-                            <div class="col-7">
-                                <span style="padding-left:3px" t-esc="o.l10n_mx_edi_amount_to_text()"/>
+                            <div class="col-8">
+                                <span style="padding-left:3px;font-size:80%;" t-esc="o.l10n_mx_edi_amount_to_text()"/>
                             </div>
-                            <div class="col-3 text-right">
+                            <div class="col-2 text-right">
                                 <strong>TOTAL</strong>
                             </div>
                             <div class="col-2 text-center">
@@ -351,7 +351,14 @@
                         <span style="color:white; padding-left:10px; font-size:15px" t-field="o.name"/>
                         <br/>
                         <strong style="color:white; font-size:16px">Fecha </strong>
-                        <span style="color:white; padding-left:10px; font-size:15px" t-field="o.invoice_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                         <t t-set="spanish_month" t-value="{'January':'Enero','February':'Feb.',
+                                      'March':'Mar.','April':'Abr.','May':'May.','June':'Jun.','July':'Jul.',
+                                      'December':'Dic.','August':'Ago.','September':'Sep.',
+                                      'October':'Oct.','November':'Nov.'}"/>
+                                      <t t-set="month" t-value="spanish_month.get(o.invoice_date.strftime('%B'))"/>
+                                      <t t-set="day" t-value="o.invoice_date.strftime('%d')"/>
+                                      <t t-set="year" t-value="o.invoice_date.strftime('%Y')"/>
+                        <span style="color:white; padding-left:15px; font-size:15px" t-esc="'{0} {1} {2}'.format(day,month,year)"/>
                     </div>
                 </div>
             </div>
@@ -365,7 +372,8 @@
                 <div class="col-4">
                     <img src="/informe_quotation/static/src/img/telefono.jpg" style="float:left" width="35" height="35" alt="telefono icono"/>
                     <p style="padding-left:38px">
-                        <span t-field="company.partner_id.phone"/>
+                        <span t-esc="company.partner_id.phone or '+52 844 489 7866'"/>
+                        <span t-field="company.phone"/>
                     </p>
                 </div>
                 <div class="col-4">
@@ -377,7 +385,7 @@
                             <span t-if="company.partner_id.city">,</span>
                             <span t-field="company.partner_id.city"/>
                             <span t-field="company.partner_id.state_id.name"/>
-                            <span t-if="company.partner_id.state_id">,</span>
+
                             
                         </p>
                 </div>
@@ -432,7 +440,7 @@
         <field name="page_height">280</field>
         <field name="page_width">216</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">45</field>
+        <field name="margin_top">40</field>
         <field name="margin_bottom">25</field>
         <field name="margin_left">15</field>
         <field name="margin_right">15</field>

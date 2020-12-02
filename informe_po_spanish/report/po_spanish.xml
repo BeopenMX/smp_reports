@@ -267,7 +267,17 @@
                         <span style="color:white; padding-left:10px; font-size:18px" t-field="o.name"/>
                         <br/>
                         <strong style="color:white; font-size:18px">Fecha </strong>
-                        <span style="color:white; padding-left:10px; font-size:18px" t-field="o.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                        <t t-set="spanish_month" t-value="{'January':'Enero','February':'Feb.','March':'Mar.','April':'Abr.','May':'May.','June':'Jun.','July':'Jul.',
+                                                           'December':'Dic.','August':'Ago.','September':'Sep.','October':'Oct.','November':'Nov.'}"/>
+                                  <t t-set="month" t-value="spanish_month.get(o.date_order.strftime('%B'))"/>
+                                  <t t-set="day" t-value="o.date_order.strftime('%d')"/>
+                                  <t t-set="year" t-value="o.date_order.strftime('%Y')"/>
+                        <t t-if="o.partner_id.lang == 'en_US'">
+                            <span style="color:white; padding-left:10px; font-size:18px" t-esc="o.date_order.strftime('%d %b %Y')"/>
+                        </t>
+                        <t t-else="">
+                          <span style="color:white; padding-left:10px; font-size:18px" t-esc="'{0} {1} {2}'.format(day,month,year)"/>
+                        </t>
                     </div>
                 </div>
                 <!--<div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>-->
@@ -285,7 +295,8 @@
                 <div class="col-4">
                     <img src="/informe_quotation/static/src/img/telefono.jpg" style="float:left" width="35" height="35" alt="telefono icono"/>
                     <p style="padding-left:38px" >
-                        <span t-field="company.partner_id.phone"/>
+                        <span t-esc="company.partner_id.phone or '+52 844 489 7866'"/>
+                        <span t-field="company.phone"/>
                     </p>
                 </div>
                 <div class="col-4">
@@ -297,7 +308,6 @@
                             <span t-if="company.partner_id.city">,</span>
                             <span t-field="company.partner_id.city"/>
                             <span t-field="company.partner_id.state_id.name"/>
-                            <span t-if="company.partner_id.state_id">,</span>
                             
                         </p>
                 </div>
