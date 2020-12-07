@@ -85,7 +85,7 @@
                             <t t-if="o.partner_id.lang == 'en_US'">
                                 <tr>
                                     <td colspan="2">
-                                            <span>4610 Modern Lane 78041, Laredo, Texas</span>
+                                            <span>4610 Modern Lane <br/>78041, Laredo, Texas</span>
                                             <br/>
                                             <span>Contact: </span><span t-field="o.user_id"/>
                                     </td>
@@ -322,10 +322,10 @@
                     <img src="/informe_po_spanish/static/src/img/Ubicacion.jpg" style="float:left" width="35" height="35" alt="ubicacion icono"/>
                         <p style="padding-left:38px">
                             <t t-if="o.partner_id.lang == 'en_US'">
-                                <span>4610 Modern Lane 78041, Laredo, Texas</span>
+                                <span>4610 Modern Lane <br/>78041, Laredo, Texas</span>
                             </t>
                             <t t-else="">
-                                <span>Prol. Blvd. Del Valle 586 Del Valle, 25904, Ramos Arizpe</span>
+                                <span>Prol. Blvd. Del Valle 586<br/> Del Valle, 25904, Ramos Arizpe</span>
                             </t>
                             
                         </p>
