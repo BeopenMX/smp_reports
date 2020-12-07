@@ -82,7 +82,17 @@
                                     <strong t-field="o.company_id.partner_id"/>
                                 </td>
                             </tr>
-                            <tr>
+                            <t t-if="o.partner_id.lang == 'en_US'">
+                                <tr>
+                                    <td colspan="2">
+                                            <span>4610 Modern Lane 78041, Laredo, Texas</span>
+                                            <br/>
+                                            <span>Contact: </span><span t-field="o.user_id"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-else="">
+                                <tr>
                                 <td style="width:40%">
                                     <strong>RFC:</strong>
                                 </td>
@@ -90,22 +100,23 @@
                                     <span t-field="o.company_id.partner_id.vat"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <strong>C.P:</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.company_id.partner_id.zip"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Usuario:</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.user_id"/>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <strong>C.P:</strong>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.company_id.partner_id.zip"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Usuario:</strong>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.user_id"/>
+                                    </td>
+                                </tr>
+                            </t>
                         </table>
                     </div>
                 </div>
@@ -293,31 +304,46 @@
             </t>
             <div class="row ">
                 <div class="col-4">
-                    <img src="/informe_quotation/static/src/img/telefono.jpg" style="float:left" width="35" height="35" alt="telefono icono"/>
+                    <img src="/informe_po_spanish/static/src/img/telefono.jpg" style="float:left" width="35" height="35" alt="telefono icono"/>
                     <p style="padding-left:38px" >
-                        <span t-esc="company.partner_id.phone or '+52 844 489 7866'"/>
-                        <span t-field="company.phone"/>
+                        <t t-if="o.partner_id.lang == 'en_US'">
+                            <span>+1 956 242 0502</span>
+                            <br/>
+                            <span>+1 956 701 8191</span>
+                        </t>
+                        <t t-else="">
+                            <span>+52 844 489 7866</span>
+                            <br/>
+                            <span>+52 844 489 7712</span>
+                        </t>
                     </p>
                 </div>
                 <div class="col-4">
-                    <img src="/informe_quotation/static/src/img/Ubicacion.jpg" style="float:left" width="35" height="35" alt="ubicacion icono"/>
+                    <img src="/informe_po_spanish/static/src/img/Ubicacion.jpg" style="float:left" width="35" height="35" alt="ubicacion icono"/>
                         <p style="padding-left:38px">
-                            <span  t-field="company.partner_id.street"/>
-                            <span t-if="company.partner_id.zip">,</span>
-                            <span t-field="company.partner_id.zip"/>
-                            <span t-if="company.partner_id.city">,</span>
-                            <span t-field="company.partner_id.city"/>
-                            <span t-field="company.partner_id.state_id.name"/>
+                            <t t-if="o.partner_id.lang == 'en_US'">
+                                <span>4610 Modern Lane 78041, Laredo, Texas</span>
+                            </t>
+                            <t t-else="">
+                                <span>Prol. Blvd. Del Valle 586 Del Valle, 25904, Ramos Arizpe</span>
+                            </t>
                             
                         </p>
                 </div>
                 <div class="col-4">
-                    <img src="/informe_quotation/static/src/img/Correo.jpg" style="float:left" width="35" height="35" alt="correo icono"/>
+                    <img src="/informe_po_spanish/static/src/img/Correo.jpg" style="float:left" width="35" height="35" alt="correo icono"/>
                     
                     <p style="padding-left:38px;word-wrap:break-word;">
-                        <span  t-field="company.partner_id.email"/>
-                        <br/>
-                        <span t-field="company.partner_id.website"/>
+                       <t t-if="o.partner_id.lang == 'en_US'">
+                            <span>purchasing@interm.us</span>
+                            <br/>
+                            <span>www.interm.us</span>
+                        </t>
+                        <t t-else="">
+                            <span>info@interm.com.mx</span>
+                            <br/>
+                            <span>www.interm.com.mx</span>
+                        </t>
                     </p>
                 </div>
 
